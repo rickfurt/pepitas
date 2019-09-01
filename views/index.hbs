@@ -1,0 +1,35 @@
+<div class="container">
+  <h3>Traditional Meals - 500ml 9$ | 650 ml $11 </h3>
+  <hr>
+  <div class="row">
+  <div id="item-container row m-1">
+    <div class="form-check-inline item-description col-xs-12 col-sm-12 col-md-3" id="item-desc" data-description="Beef Strogonoff">
+      Beef Strogonoff
+    </div>
+
+    <div class="form-check form-check-inline col-xs-12 col-sm-12 col-md-2" id="smallSize">
+      <input class="form-check-input sizes" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+        onclick="return checkSize('small')"checked>
+      <label class="form-check-label" for="inlineRadio1">500 ml</label>
+    </div>
+
+    <div class="form-check form-check-inline col-xs-12 col-sm-12 col-md-2" id="LargeSize">
+      <input class="form-check-input sizes" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+        onclick="return checkSize('large')">
+      <label class="form-check-label" for="inlineRadio2">650 ml</label>
+    </div>
+    <div class="form-check-inline test col-xs-12 col-sm-12 col-md-3">
+      <input class="form-control quantity" type="number" min="1" value="1"></div>
+    </div>
+    <div class="form-check-inline ml-1 btn btn-primary addButton col-xs-12 col-sm-12 col-md-2">
+      Add Item
+    </div>
+    
+  </div>
+
+<hr>
+  <h3>Order Details</h3>
+  <div class="container preview list-group"  id="preview"></div>
+
+  <a class="btn btn-primary m-2 url-handle" href="#" id="url-handle">Send</a>
+</div>
