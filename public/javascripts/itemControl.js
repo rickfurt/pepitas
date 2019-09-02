@@ -1,3 +1,5 @@
+window.onload = function (){
+    
 var full_item='';
 var size;
 var description;
@@ -17,6 +19,8 @@ for(var i = 0;i<addButton.length;i++){
         var largeSize = item.getElementsByClassName('sizes')[1].checked;
         quantity = item.getElementsByClassName('quantity')[0].value;
 
+        console.log(item)
+
         checkSize(smallSize);
 
         full_item = description + ' | ' +'Size:  ' + size + ' | ' + 'Qty:  ' + quantity;
@@ -27,6 +31,30 @@ for(var i = 0;i<addButton.length;i++){
         urlHandle();
     });
 }
+
+// var removeButton = document.getElementsByClassName('removeButton');
+// for(var i = 0;i<addButton.length;i++){
+//     var button = addButton[i]
+//         button.addEventListener('click',function(event){
+//         var buttonClicked = event.target;
+//         // console.log('cliked',buttonClicked);
+//         var item = buttonClicked.parentElement;
+//         var description = item.getElementsByClassName('item-description')[0].innerText;
+        
+//         console.log(item)
+
+        // checkSize(smallSize);
+
+        // full_item = description + ' | ' +'Size:  ' + size + ' | ' + 'Qty:  ' + quantity;
+        // console.log(full_item);
+        // // console.log(description,size);
+        // addToPreview(description,size,quantity);
+        // addToList(full_item);
+        // urlHandle();
+    // });
+}
+
+
 
 function addToList (full){
     listItem.push(full);
@@ -60,11 +88,5 @@ function addToPreview(description,size,quantity){
     var textnode = document.createTextNode('Description: '+ description + ' | ' + 'Size: '+ size + ' | ' + 'Quantity: ' + quantity);
     node.appendChild(textnode);
     document.getElementById("preview").appendChild(node);
-}
-
-
-//previewer refresh 2 seconds
-// setInterval(function(){
-//     document.getElementById("preview").innerHTML = itens;
-// },2000);
+};
 

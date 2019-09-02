@@ -1,10 +1,9 @@
-<a href="/admin"><div class="login" style="position:absolute;right:30px;top:10px;font-size:20px">Login</div></a>
 <div class="container">
-  <h3>Pepitas Foods </h3>
+  <h3>Admin Page</h3>
   <hr>
   {{#each item}}
   <div id="item-container row m-1">
-    <div class="form-check-inline item-description" id="item-desc" data-description="Beef Strogonoff">
+    <div class="form-check-inline item-description" id="item-desc">
       {{description}}
     </div>
     
@@ -22,9 +21,12 @@
     <div class="form-check-inline test ">
       <input class="form-control quantity" type="number" min="1" value="1">
       </div>
-    <div class="form-check-inline ml-1 btn btn-primary addButton">
-      Add Item
+    <form action="/delete" method="POST">
+    <div class="form-check-inline ml-1 btn btn-danger removeButton" name="{{description}}">
+      Remove Item
     </div>
+    </form>
+
     </div>
     {{/each}} 
 <hr>
@@ -34,7 +36,6 @@
   <a class="btn btn-primary m-2 url-handle" href="#" id="url-handle">Send</a>
   <a class="btn btn-danger m-2 url-handle" href="/" id="Clear-List">Clear list</a>
 </div>
-
 
 <hr>
 <div class="container">
