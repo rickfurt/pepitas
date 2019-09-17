@@ -25,12 +25,12 @@ router.get('/', function(req, res, next) {
   Item.find(function (err, Item) {
     if (err) return console.error(err);
     all_items = Item;
-  });
-
-  setTimeout(function(){
     res.render('index', { title: 'Pepitas',item:all_items });
-  },2000);  
+  });
 });
+
+
+
 
 router.get('/login', function(req, res, next) {
   res.render('login', { title: 'Pepitas Login'}); 
@@ -44,9 +44,7 @@ router.post('/create', function(req, res, next) {
 
   saveItemToDb(description,priceSmall,priceLarge);
   
-  setTimeout(function(){
-    res.redirect('/admin');
-  },2000);  
+  res.redirect('/');
 });
 
 
@@ -54,11 +52,9 @@ router.post('/delete', function(req, res, next) {
   let handleQuery = req.query;
   var itemToDelete = handleQuery.item;
 
-  deleteItem(itemToDelete);
-   
-  setTimeout(function(){
-    res.redirect('/admin');
-  },2000);  
+  deleteItem(itemToDelete); 
+  
+  res.redirect('/');
 });
 
 router.get('/admin', function(req, res, next) {
@@ -68,9 +64,7 @@ router.get('/admin', function(req, res, next) {
     // console.log(all_items);
   });
 
-  setTimeout(function(){
     res.render('admin', { title: 'Pepitas',item:all_items });
-  },2000);  
 });
 
 
