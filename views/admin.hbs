@@ -21,10 +21,8 @@
     <div class="form-check-inline test ">
       <input class="form-control quantity" type="number" min="1" value="1">
       </div>
-    <form action="/delete" method="POST">
-    <div class="form-check-inline ml-1 btn btn-danger removeButton" name="{{description}}">
-      Remove Item
-    </div>
+    <form action="/delete/?item={{description}}" method="POST">
+    <button type="submit" class="form-check-inline ml-1 btn btn-danger removeButton" name="{{description}}">Remove Item</button>
     </form>
 
     </div>

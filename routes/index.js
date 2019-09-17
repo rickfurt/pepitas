@@ -4,6 +4,13 @@ var router = express.Router();
 var mongoose = require('mongoose');
 mongoose.connect(process.env.mongoURL, {useNewUrlParser: true});
 
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log("we\'re connected!");
+});
+
+
   var itemSchema = new mongoose.Schema({
     description:  String,
     priceSmall:   Number,
@@ -22,28 +29,14 @@ mongoose.connect(process.env.mongoURL, {useNewUrlParser: true});
   }
   var all_items;
  
-
-
-
   // Finding one entry
   function findItem (description){
     Item.find({description});
     console.log(description);
   }
 
-  function deleteItem (description){
-    Item.findOneAndDelete({ description}, function (err) {
-      console.log(err)
-    });
-  }
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  var db = mongoose.connection;
-  db.on('error', console.error.bind(console, 'connection error:'));
-  db.once('open', function() {
-    console.log("we\'re connected!");
-  });
 
   Item.find(function (err, Item) {
     if (err) return console.error(err);
@@ -56,6 +49,11 @@ router.get('/', function(req, res, next) {
   },2000);  
 });
 
+router.get('/login', function(req, res, next) {
+  res.render('login', { title: 'Pepitas Login'}); 
+});
+
+
 router.post('/create', function(req, res, next) {
   var description = req.body.description;
   var priceSmall = req.body.smallPrice;
@@ -64,30 +62,36 @@ router.post('/create', function(req, res, next) {
   saveItemToDb(description,priceSmall,priceLarge);
   
   setTimeout(function(){
-    res.redirect('/');
+    res.redirect('/admin');
   },2000);  
 });
 
 
 router.post('/delete', function(req, res, next) {
-  var description = req.body.description;
-  deleteItem(description);
-  
+  let handleQuery = req.query;
+  var itemToDelete = handleQuery.item;
+
+  deleteItem(itemToDelete);
+   
   setTimeout(function(){
     res.redirect('/admin');
   },2000);  
 });
 
 function deleteItem(value){
-  Item.findOneAndDelete(value);
+  Item.deleteOne({ description: value },
+     function (err) {
+       console.log('error deleting the item...' )
+  });
+  console.log('item = '+ value + ' has been deleted')
 }
 
 router.get('/admin', function(req, res, next) {
-  var db = mongoose.connection;
-  db.on('error', console.error.bind(console, 'connection error:'));
-  db.once('open', function() {
-    console.log("we\'re connected!");
-  });
+  // var db = mongoose.connection;
+  // db.on('error', console.error.bind(console, 'connection error:'));
+  // db.once('open', function() {
+  //   console.log("we\'re connected!");
+  // });
 
   Item.find(function (err, Item) {
     if (err) return console.error(err);

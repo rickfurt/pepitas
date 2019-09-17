@@ -5,3 +5,9 @@
 .quantity{
   max-width: 60px;
 }
+
+
+.login-form{
+  border:1px solid gray;
+  border-radius: 6px;
+}

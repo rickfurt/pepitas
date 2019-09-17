@@ -29,8 +29,11 @@ for(var i = 0;i<addButton.length;i++){
         addToPreview(description,size,quantity);
         addToList(full_item);
         urlHandle();
-    });
+    });    
 }
+
+
+
 
 // var removeButton = document.getElementsByClassName('removeButton');
 // for(var i = 0;i<addButton.length;i++){
