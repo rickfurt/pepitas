@@ -14,8 +14,5 @@
     "http-errors": "~1.6.2",
     "mongoose": "^5.6.11",
     "morgan": "~1.9.0"
-  },
-  "devDependencies": {
-    "dotenv": "^8.1.0"
   }
 }
