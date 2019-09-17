@@ -18,30 +18,13 @@ db.once('open', function() {
   });
 
   var Item = mongoose.model('Food', itemSchema);
-
-  // creating new data Function
-  function saveItemToDb(description,priceSmall,priceLarge){
-    var newItem = new Item({description,priceSmall,priceLarge});
-    newItem.save(function (err, description) {
-      if (err) return console.error(err);
-      console.log('Item Saved Successfully');
-    });
-  }
   var all_items;
  
-  // Finding one entry
-  function findItem (description){
-    Item.find({description});
-    console.log(description);
-  }
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
-
   Item.find(function (err, Item) {
     if (err) return console.error(err);
     all_items = Item;
-    // console.log(all_items);
   });
 
   setTimeout(function(){
@@ -78,21 +61,7 @@ router.post('/delete', function(req, res, next) {
   },2000);  
 });
 
-function deleteItem(value){
-  Item.deleteOne({ description: value },
-     function (err) {
-       console.log('error deleting the item...' )
-  });
-  console.log('item = '+ value + ' has been deleted')
-}
-
 router.get('/admin', function(req, res, next) {
-  // var db = mongoose.connection;
-  // db.on('error', console.error.bind(console, 'connection error:'));
-  // db.once('open', function() {
-  //   console.log("we\'re connected!");
-  // });
-
   Item.find(function (err, Item) {
     if (err) return console.error(err);
     all_items = Item;
@@ -103,6 +72,33 @@ router.get('/admin', function(req, res, next) {
     res.render('admin', { title: 'Pepitas',item:all_items });
   },2000);  
 });
+
+
+  // creating new data Function
+  function saveItemToDb(description,priceSmall,priceLarge){
+    var newItem = new Item({description,priceSmall,priceLarge});
+    newItem.save(function (err, description) {
+      if (err) return console.error(err);
+      console.log('Item Saved Successfully');
+    });
+  }
+
+  // Finding one entry
+  function findItem (description){
+    Item.find({description});
+    console.log(description);
+  }
+
+function deleteItem(value){
+  Item.deleteOne({ description: value },
+     function (err) {
+       console.log('error deleting the item...' )
+  });
+  console.log('item = '+ value + ' has been deleted')
+}
+
+
+
 
 
 module.exports = router;
