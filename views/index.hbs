@@ -6,24 +6,24 @@
   <hr>
   {{#each item}}
   <div id="item-container row m-1">
-    <div class="form-check-inline item-description" id="item-desc" data-description="Beef Strogonoff">
+    <div class="form-check-inline item-description" id="item-desc">
       {{description}}
     </div>
 
     <div class="form-check form-check-inline " id="smallSize">
-      <input class="form-check-input sizes" type="radio" name="{{description}}" id="inlineRadio1"
-        onclick="return checkSize('small')" checked>
+      <input class="form-check-input sizes" type="radio" name="{{description}}" id="inlineRadio1" onclick="return handleItem(this)" checked>
       <label class="form-check-label" for="inlineRadio1">500 ml</label>
     </div>
 
     <div class="form-check form-check-inline " id="LargeSize">
-      <input class="form-check-input sizes" type="radio" name="{{description}}" id="inlineRadio2"
-        onclick="return checkSize('large')">
+      <input class="form-check-input sizes" type="radio" name="{{description}}" id="inlineRadio2" onclick="return handleItem(this)">
       <label class="form-check-label" for="inlineRadio2">650 ml</label>
     </div>
     <div class="form-check-inline test ">
-      <input class="form-control quantity" type="number" min="1" value="1">
+      <input class="form-control quantity" type="number" min="1" value="1" onchange="handleItem(this)">
     </div>
+    <input class="form-control form-check-inline text-center price" type="number" value="0" data-small="{{priceSmall}}" data-large="{{priceLarge}}" readonly>
+
     <div class="form-check-inline ml-1 btn btn-primary addButton">
       Add Item
     </div>
