@@ -1,5 +1,7 @@
 # pepitas
 
+[Demo](https://pepitas-test.herokuapp.com/)
+
 This project's purpose is to use a minimalist database for item details and dynamic URL transformation to send data via whatsapp chat, within the server also will be integrated a basic  CMS  to manage the items and the database.
 
 Stack
